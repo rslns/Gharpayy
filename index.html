@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gharpayy — Find Your Stay in Bangalore</title>
+<meta name="description" content="Gharpayy — Premium co-living and PG stays in Bangalore. Koramangala, Whitefield, Manyata Tech Park, HSR Layout and more. Fully managed, zero brokerage."/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0D0F1C;--red:#E8341A;--cream:#F2EDE4;--grey:#8A8A9A;--light:#1A1C2E;--border:rgba(255,255,255,0.08);--green:#22C55E;--card:#fff}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#F7F6F2;color:#1a1a2e;overflow-x:hidden}
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:#fff;border-bottom:1px solid #e5e5e5;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:64px;box-shadow:0 1px 8px rgba(0,0,0,.05)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:3px;color:var(--navy)}
+.nav-logo span{color:var(--red)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:13.5px;font-weight:500;color:#555;text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--red)}
+.nav-cta{background:var(--red);color:#fff;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;padding:9px 22px;border-radius:4px;cursor:pointer;transition:opacity .2s;text-decoration:none;display:inline-block}
+.nav-cta:hover{opacity:.88}
+@media(max-width:640px){.nav-links{display:none}nav{padding:0 20px}}
+/* HERO */
+.hero{background:var(--navy);padding:80px 40px 60px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;right:-100px;top:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(232,52,26,.12) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1100px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(232,52,26,.15);border:1px solid rgba(232,52,26,.3);color:#f99;font-size:12px;font-family:'DM Mono',monospace;padding:5px 14px;border-radius:20px;margin-bottom:28px;letter-spacing:1px}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,88px);line-height:.95;letter-spacing:2px;color:#fff;margin-bottom:16px}
+.hero h1 span{color:var(--red)}
+.hero-sub{font-size:16px;color:rgba(255,255,255,.55);max-width:520px;line-height:1.7;margin-bottom:40px}
+/* SEARCH BOX */
+.search-box{background:#fff;border-radius:8px;padding:20px 24px;display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:16px;align-items:end;box-shadow:0 8px 40px rgba(0,0,0,.25);max-width:860px}
+@media(max-width:700px){.search-box{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.search-box{grid-template-columns:1fr}}
+.s-field{display:flex;flex-direction:column;gap:5px}
+.s-field label{font-size:11px;font-weight:600;color:#888;letter-spacing:1.5px;text-transform:uppercase}
+.s-field select,.s-field input{border:1.5px solid #e5e5e5;border-radius:5px;padding:10px 12px;font-size:14px;font-family:'DM Sans',sans-serif;color:#1a1a2e;background:#fff;outline:none;transition:border-color .2s}
+.s-field select:focus,.s-field input:focus{border-color:var(--red)}
+.s-btn{background:var(--red);color:#fff;border:none;border-radius:5px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;padding:12px 28px;cursor:pointer;transition:opacity .2s;white-space:nowrap}
+.s-btn:hover{opacity:.88}
+/* STATS */
+.stats-bar{background:#fff;border-bottom:1px solid #ebebeb;padding:18px 40px;display:flex;gap:48px;align-items:center;flex-wrap:wrap}
+.stat{display:flex;align-items:baseline;gap:8px}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--navy);line-height:1}
+.stat-label{font-size:13px;color:#888}
+/* MAIN */
+.main{max-width:1200px;margin:0 auto;padding:40px 40px 80px;display:grid;grid-template-columns:260px 1fr;gap:32px}
+@media(max-width:900px){.main{grid-template-columns:1fr;padding:24px 20px 60px}}
+/* FILTERS */
+.filters{background:#fff;border:1px solid #e8e8e8;border-radius:8px;padding:24px;align-self:start;position:sticky;top:80px}
+@media(max-width:900px){.filters{position:static}}
+.filter-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:20px}
+.filter-section{margin-bottom:22px}
+.filter-section-label{font-size:11px;font-weight:600;color:#aaa;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;display:block}
+.filter-chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{border:1.5px solid #e5e5e5;border-radius:20px;padding:5px 13px;font-size:12.5px;font-weight:500;color:#555;cursor:pointer;transition:all .2s;background:#fff;user-select:none}
+.chip:hover{border-color:var(--red);color:var(--red)}
+.chip.active{background:var(--red);border-color:var(--red);color:#fff}
+.price-range{width:100%;margin-top:8px;accent-color:var(--red)}
+.price-display{display:flex;justify-content:space-between;font-size:12px;color:#aaa;margin-top:5px}
+.filter-reset{width:100%;border:1.5px solid #e5e5e5;background:#fff;border-radius:5px;padding:9px;font-size:13px;font-weight:600;color:#888;cursor:pointer;transition:all .2s;margin-top:8px;font-family:'DM Sans',sans-serif}
+.filter-reset:hover{border-color:var(--red);color:var(--red)}
+/* RESULTS */
+.results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+.results-count{font-size:14px;color:#888}
+.results-count strong{color:var(--navy)}
+.sort-select{border:1.5px solid #e5e5e5;border-radius:5px;padding:7px 12px;font-size:13px;font-family:'DM Sans',sans-serif;color:#555;outline:none;cursor:pointer}
+/* CARDS */
+.listings{display:flex;flex-direction:column;gap:20px}
+.listing-card{background:#fff;border:1px solid #e8e8e8;border-radius:10px;overflow:hidden;display:grid;grid-template-columns:260px 1fr;transition:box-shadow .25s,transform .2s;cursor:pointer}
+.listing-card:hover{box-shadow:0 6px 32px rgba(0,0,0,.1);transform:translateY(-2px)}
+@media(max-width:640px){.listing-card{grid-template-columns:1fr}}
+.listing-img{position:relative;height:200px;overflow:hidden;background:linear-gradient(135deg,#1a1c2e 0%,#2d2f4a 100%);display:flex;align-items:center;justify-content:center;font-size:72px}
+@media(max-width:640px){.listing-img{height:160px}}
+.l-badge{position:absolute;top:12px;left:12px;color:#fff;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:3px}
+.l-badge.managed{background:#22C55E}
+.l-badge.popular{background:#F59E0B;color:#1a1a2e}
+.listing-body{padding:22px 24px;display:flex;flex-direction:column}
+.listing-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px}
+.listing-name{font-size:16px;font-weight:700;color:var(--navy);line-height:1.3}
+.listing-price{text-align:right;flex-shrink:0}
+.amount{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--red);line-height:1}
+.per{font-size:11px;color:#aaa}
+.listing-loc{display:flex;align-items:center;gap:5px;font-size:12.5px;color:#888;margin-bottom:12px}
+.listing-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{background:#f5f5f5;border-radius:3px;padding:3px 9px;font-size:11.5px;color:#666;font-weight:500}
+.listing-amenities{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px;flex:1}
+.amenity{font-size:12px;color:#888}
+.listing-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid #f0f0f0;gap:10px;flex-wrap:wrap}
+.rating{display:flex;align-items:center;gap:5px;font-size:13px;font-weight:600;color:var(--navy)}
+.stars{color:#F59E0B;font-size:12px}
+.rcount{font-size:12px;color:#aaa;font-weight:400}
+.avail{font-size:12px;color:#22C55E;font-weight:600}
+.book-btn{background:var(--navy);color:#fff;border:none;border-radius:5px;padding:9px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}
+.book-btn:hover{background:var(--red)}
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;padding:20px}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:#fff;border-radius:12px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;transform:translateY(20px);transition:transform .25s}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-head{background:var(--navy);padding:28px 32px;display:flex;justify-content:space-between;align-items:flex-start}
+.modal-head h3{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#fff;letter-spacing:1px}
+.modal-head p{font-size:13px;color:rgba(255,255,255,.5);margin-top:4px}
+.modal-close{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;opacity:.6;padding:0;margin-left:16px;flex-shrink:0}
+.modal-close:hover{opacity:1}
+.modal-body{padding:28px 32px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.fg label{font-size:11px;font-weight:600;color:#888;letter-spacing:1px;text-transform:uppercase}
+.fg input,.fg select,.fg textarea{border:1.5px solid #e5e5e5;border-radius:5px;padding:11px 14px;font-size:14px;font-family:'DM Sans',sans-serif;color:#1a1a2e;outline:none;transition:border-color .2s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--red)}
+.fg textarea{resize:vertical;min-height:80px}
+.form-submit{width:100%;background:var(--red);color:#fff;border:none;border-radius:5px;padding:14px;font-size:15px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;transition:opacity .2s}
+.form-submit:hover{opacity:.88}
+.form-submit:disabled{opacity:.6;cursor:not-allowed}
+.success-msg{display:none;text-align:center;padding:20px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;margin-top:16px}
+.success-msg h4{color:#16a34a;font-size:16px;margin-bottom:6px}
+.success-msg p{font-size:13px;color:#555}
+/* AREAS */
+.areas{background:#fff;border-top:1px solid #ebebeb;padding:60px 40px}
+.areas-inner{max-width:1200px;margin:0 auto}
+.section-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--red);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;display:block}
+.section-heading{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,54px);color:var(--navy);margin-bottom:36px;letter-spacing:1px}
+.areas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.area-card{border:1.5px solid #e8e8e8;border-radius:8px;padding:20px 18px;cursor:pointer;transition:all .2s;background:#fafafa}
+.area-card:hover{border-color:var(--red);background:#fff;box-shadow:0 4px 20px rgba(232,52,26,.08)}
+.area-card h4{font-size:14px;font-weight:700;color:var(--navy)}
+.area-card p{font-size:12px;color:#aaa;margin-top:2px}
+.area-card .acount{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--red);line-height:1;margin-top:8px}
+/* HOW */
+.how{background:var(--navy);padding:70px 40px}
+.how-inner{max-width:1100px;margin:0 auto}
+.how .section-label{color:rgba(232,52,26,.8)}
+.how .section-heading{color:#fff}
+.steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:2px}
+.step{padding:32px 28px;background:rgba(255,255,255,.03);border:1px solid var(--border)}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:56px;color:rgba(232,52,26,.2);line-height:1;margin-bottom:12px}
+.step h4{font-size:15px;font-weight:700;color:#fff;margin-bottom:8px}
+.step p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.65}
+/* FOOTER */
+footer{background:#0a0b14;padding:40px;text-align:center}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;color:#fff;margin-bottom:10px}
+.footer-logo span{color:var(--red)}
+footer p{font-size:13px;color:#555;margin-bottom:6px}
+footer a{color:var(--red);text-decoration:none}
+/* NO RESULTS */
+.no-results{text-align:center;padding:60px 20px;color:#aaa;display:none}
+.no-results h3{font-size:20px;color:#555;margin-bottom:8px}
+/* TOAST */
+.toast{position:fixed;bottom:30px;right:30px;z-index:999;background:var(--navy);color:#fff;padding:14px 22px;border-radius:8px;border-left:4px solid #22C55E;font-size:14px;font-weight:500;transform:translateY(80px);opacity:0;transition:all .35s;box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.toast.show{transform:translateY(0);opacity:1}
+@media(max-width:640px){.stats-bar{gap:24px;padding:16px 20px}.areas{padding:40px 20px}.how{padding:50px 20px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">GHAR<span>PAYY</span></div>
+  <div class="nav-links">
+    <a href="#listings-section">Browse PGs</a>
+    <a href="#areas">Locations</a>
+    <a href="#how">How it Works</a>
+    <a href="#" class="nav-cta" onclick="openModal(null,event)">Book a Tour</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">📍 Bangalore's #1 Managed Co-living</div>
+    <h1>FIND YOUR<br/><span>STAY</span> IN<br/>BANGALORE</h1>
+    <p class="hero-sub">Fully managed PGs and co-living near every major tech park. Zero brokerage. Move in this week.</p>
+    <div class="search-box">
+      <div class="s-field">
+        <label>Location</label>
+        <select id="search-location" onchange="applyFilters()">
+          <option value="">All Locations</option>
+          <option>Koramangala</option><option>Whitefield</option>
+          <option>Manyata Tech Park</option><option>HSR Layout</option>
+          <option>Bellandur</option><option>Electronic City</option>
+          <option>BTM Layout</option><option>Marathalli</option>
+          <option>Indiranagar</option>
+        </select>
+      </div>
+      <div class="s-field">
+        <label>Room Type</label>
+        <select id="search-type" onchange="applyFilters()">
+          <option value="">Any Type</option>
+          <option>Single Private</option><option>Double Sharing</option>
+          <option>Triple Sharing</option><option>Studio</option>
+        </select>
+      </div>
+      <div class="s-field">
+        <label>Max Budget</label>
+        <select id="search-budget" onchange="applyFilters()">
+          <option value="">Any Budget</option>
+          <option value="10000">Under ₹10,000</option>
+          <option value="15000">Under ₹15,000</option>
+          <option value="20000">Under ₹20,000</option>
+          <option value="30000">Under ₹30,000</option>
+        </select>
+      </div>
+      <button class="s-btn" onclick="applyFilters()">Search</button>
+    </div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-num">1,200+</span><span class="stat-label">rooms across Bangalore</span></div>
+  <div class="stat"><span class="stat-num">11</span><span class="stat-label">prime locations</span></div>
+  <div class="stat"><span class="stat-num">4.7★</span><span class="stat-label">average rating</span></div>
+  <div class="stat"><span class="stat-num">₹0</span><span class="stat-label">brokerage</span></div>
+</div>
+
+<div class="main" id="listings-section">
+  <aside class="filters">
+    <div class="filter-title">Filters</div>
+    <div class="filter-section">
+      <span class="filter-section-label">Room Type</span>
+      <div class="filter-chips" id="type-chips">
+        <div class="chip active" data-type="all" onclick="toggleChip(this,'type')">All</div>
+        <div class="chip" data-type="Single Private" onclick="toggleChip(this,'type')">Single</div>
+        <div class="chip" data-type="Double Sharing" onclick="toggleChip(this,'type')">Double</div>
+        <div class="chip" data-type="Triple Sharing" onclick="toggleChip(this,'type')">Triple</div>
+        <div class="chip" data-type="Studio" onclick="toggleChip(this,'type')">Studio</div>
+      </div>
+    </div>
+    <div class="filter-section">
+      <span class="filter-section-label">Meals</span>
+      <div class="filter-chips" id="meal-chips">
+        <div class="chip active" data-meal="all" onclick="toggleChip(this,'meal')">Any</div>
+        <div class="chip" data-meal="yes" onclick="toggleChip(this,'meal')">With Meals</div>
+        <div class="chip" data-meal="no" onclick="toggleChip(this,'meal')">Without Meals</div>
+      </div>
+    </div>
+    <div class="filter-section">
+      <span class="filter-section-label">Gender</span>
+      <div class="filter-chips" id="gender-chips">
+        <div class="chip active" data-gender="all" onclick="toggleChip(this,'gender')">All</div>
+        <div class="chip" data-gender="Coed" onclick="toggleChip(this,'gender')">Co-ed</div>
+        <div class="chip" data-gender="Girls" onclick="toggleChip(this,'gender')">Girls Only</div>
+        <div class="chip" data-gender="Boys" onclick="toggleChip(this,'gender')">Boys Only</div>
+      </div>
+    </div>
+    <div class="filter-section">
+      <span class="filter-section-label">Max Budget: ₹<span id="budget-label">25,000</span>/mo</span>
+      <input type="range" class="price-range" id="price-slider" min="6000" max="30000" step="500" value="25000" oninput="updateBudget(this.value)"/>
+      <div class="price-display"><span>₹6,000</span><span>₹30,000</span></div>
+    </div>
+    <button class="filter-reset" onclick="resetFilters()">Reset All Filters</button>
+  </aside>
+
+  <div>
+    <div class="results-header">
+      <p class="results-count"><strong id="result-count">12</strong> properties found</p>
+      <select class="sort-select" id="sort-select" onchange="applyFilters()">
+        <option value="default">Sort: Recommended</option>
+        <option value="price-low">Price: Low to High</option>
+        <option value="price-high">Price: High to Low</option>
+        <option value="rating">Highest Rated</option>
+      </select>
+    </div>
+    <div class="listings" id="listings-container"></div>
+    <div class="no-results" id="no-results">
+      <h3>No properties match your filters</h3>
+      <p>Try adjusting filters or <span style="color:var(--red);cursor:pointer" onclick="resetFilters()">reset all</span></p>
+    </div>
+  </div>
+</div>
+
+<div class="areas" id="areas">
+  <div class="areas-inner">
+    <span class="section-label">Browse by Area</span>
+    <h2 class="section-heading">Pick Your<br/>Neighbourhood</h2>
+    <div class="areas-grid">
+      <div class="area-card" onclick="filterByArea('Koramangala')"><h4>Koramangala</h4><p>Forum Mall, Christ University</p><div class="acount">3</div></div>
+      <div class="area-card" onclick="filterByArea('Whitefield')"><h4>Whitefield</h4><p>ITPL, EPIP Zone, Phoenix</p><div class="acount">2</div></div>
+      <div class="area-card" onclick="filterByArea('Manyata Tech Park')"><h4>Manyata Tech Park</h4><p>IBM, Wipro, Elements Mall</p><div class="acount">2</div></div>
+      <div class="area-card" onclick="filterByArea('HSR Layout')"><h4>HSR Layout</h4><p>Startup hub, great connectivity</p><div class="acount">1</div></div>
+      <div class="area-card" onclick="filterByArea('Bellandur')"><h4>Bellandur</h4><p>RMZ Ecoworld, Embassy Tech</p><div class="acount">1</div></div>
+      <div class="area-card" onclick="filterByArea('Electronic City')"><h4>Electronic City</h4><p>Infosys, Wipro, TCS, Biocon</p><div class="acount">1</div></div>
+      <div class="area-card" onclick="filterByArea('Indiranagar')"><h4>Indiranagar</h4><p>100 Feet Road, Metro</p><div class="acount">1</div></div>
+      <div class="area-card" onclick="filterByArea('Marathalli')"><h4>Marathalli</h4><p>Embassy TechVillage, ORR</p><div class="acount">1</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="how" id="how">
+  <div class="how-inner">
+    <span class="section-label">Simple Process</span>
+    <h2 class="section-heading">How Gharpayy<br/>Works</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><h4>Search &amp; Filter</h4><p>Pick your location, budget, and room type. See real availability, not outdated listings.</p></div>
+      <div class="step"><div class="step-num">02</div><h4>Book a Free Tour</h4><p>Schedule a live video or in-person tour before you travel. No surprises on move-in day.</p></div>
+      <div class="step"><div class="step-num">03</div><h4>Pre-book &amp; Lock In</h4><p>Pay a small refundable token to hold your room. ₹2,000 off for pre-bookings.</p></div>
+      <div class="step"><div class="step-num">04</div><h4>Move In. Focus Up.</h4><p>Everything is managed — maintenance, meals, rent receipts. Your only job is your growth.</p></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">GHAR<span>PAYY</span></div>
+  <p>Bangalore's most trusted managed co-living network</p>
+  <p><a href="tel:+917988114576">+91 7988 114576</a> &nbsp;·&nbsp; <a href="mailto:team@gharpayy.com">team@gharpayy.com</a></p>
+  <p style="margin-top:16px;color:#333;font-size:12px">© 2026 Gharpayy. Zero brokerage. 100% managed.</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="book-modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h3 id="modal-title">Book a Free Tour</h3>
+        <p id="modal-subtitle">We'll confirm within 2 hours. No commitment needed.</p>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="fg"><label>Your Name</label><input type="text" placeholder="Aditya Kumar" id="f-name"/></div>
+        <div class="fg"><label>WhatsApp Number</label><input type="tel" placeholder="+91 98765 43210" id="f-phone"/></div>
+      </div>
+      <div class="fg">
+        <label>Preferred Location</label>
+        <select id="f-location">
+          <option value="">Select area...</option>
+          <option>Koramangala</option><option>Whitefield</option>
+          <option>Manyata Tech Park</option><option>HSR Layout</option>
+          <option>Bellandur</option><option>Electronic City</option>
+          <option>Indiranagar</option><option>BTM Layout</option><option>Marathalli</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="fg"><label>Move-in Date</label><input type="date" id="f-date"/></div>
+        <div class="fg">
+          <label>Room Type</label>
+          <select id="f-type">
+            <option>Single Private</option><option>Double Sharing</option>
+            <option>Triple Sharing</option><option>Studio / 1BHK</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Anything else? (optional)</label><textarea placeholder="e.g. I work at Manyata IBM, need to move by April 1st..." id="f-note"></textarea></div>
+      <button class="form-submit" id="form-submit-btn" onclick="submitForm()">Request Tour — It's Free</button>
+      <div class="success-msg" id="success-msg">
+        <h4>✓ Tour Request Sent!</h4>
+        <p>Our team will WhatsApp you within 2 hours to confirm your slot.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">✓ Tour request sent! We'll WhatsApp you shortly.</div>
+
+<script>
+const PGS=[
+  {id:1,name:"Gharpayy Koramangala — Founders Block",location:"Koramangala",type:"Single Private",price:14500,meals:"yes",gender:"Coed",rating:4.8,reviews:214,available:3,badge:"popular",icon:"🏙️",tags:["Walk to Forum Mall","Near Christ University","Startup Zone"],amenities:["🍽️ Meals","🛡️ Security","📶 WiFi","🧹 Housekeeping"]},
+  {id:2,name:"Gharpayy Koramangala — Studio Wing",location:"Koramangala",type:"Studio",price:22000,meals:"yes",gender:"Coed",rating:4.9,reviews:87,available:1,badge:"managed",icon:"✨",tags:["Private Studio","Fully Furnished","Premium Block"],amenities:["🍽️ Meals","📦 Furnished","🧺 Laundry","🚗 Parking"]},
+  {id:3,name:"Gharpayy Koramangala — Girls PG",location:"Koramangala",type:"Double Sharing",price:9500,meals:"yes",gender:"Girls",rating:4.7,reviews:156,available:5,badge:"managed",icon:"🌸",tags:["Girls Only","Safe Locality","CCTV 24x7"],amenities:["🍽️ Meals","🛡️ Security","🧹 Housekeeping","📶 WiFi"]},
+  {id:4,name:"Gharpayy Whitefield — ITPL Gate",location:"Whitefield",type:"Single Private",price:13000,meals:"yes",gender:"Coed",rating:4.6,reviews:132,available:4,badge:"managed",icon:"💻",tags:["5 min to ITPL","Metro Access","Power Backup"],amenities:["🍽️ Meals","⚡ Power Backup","🚇 Metro","📶 WiFi"]},
+  {id:5,name:"Gharpayy Whitefield — EPIP Zone",location:"Whitefield",type:"Double Sharing",price:8000,meals:"no",gender:"Boys",rating:4.5,reviews:98,available:6,badge:"",icon:"🏗️",tags:["Near Phoenix Mall","Budget Friendly","Boys Only"],amenities:["📶 WiFi","🛡️ Security","🏋️ Gym","🧺 Laundry"]},
+  {id:6,name:"Gharpayy Manyata — IBM Cluster",location:"Manyata Tech Park",type:"Single Private",price:15000,meals:"yes",gender:"Coed",rating:4.8,reviews:203,available:2,badge:"popular",icon:"🔭",tags:["4 min walk to IBM","Walk to Elements Mall","High-Performance Zone"],amenities:["🍽️ Meals","🏃 Gym","📶 WiFi","🧹 Housekeeping"]},
+  {id:7,name:"Gharpayy Nagawara — Manyata Annex",location:"Manyata Tech Park",type:"Triple Sharing",price:7500,meals:"yes",gender:"Coed",rating:4.4,reviews:76,available:8,badge:"",icon:"🌿",tags:["Quiet Zone","Green Area","Budget Pick"],amenities:["🍽️ Meals","📶 WiFi","🛡️ Security","🚌 Transport"]},
+  {id:8,name:"Gharpayy HSR Layout — Sector 2",location:"HSR Layout",type:"Single Private",price:16000,meals:"no",gender:"Coed",rating:4.7,reviews:118,available:2,badge:"managed",icon:"🚀",tags:["Startup Hub","BDA Complex","Cafe Culture"],amenities:["📶 Fiber WiFi","🏋️ Gym","🚴 Cycling","📦 Furnished"]},
+  {id:9,name:"Gharpayy Bellandur — ORR Stay",location:"Bellandur",type:"Double Sharing",price:10000,meals:"yes",gender:"Coed",rating:4.6,reviews:91,available:4,badge:"managed",icon:"🌊",tags:["RMZ Ecoworld","Lake View","Embassy Tech"],amenities:["🍽️ Meals","📶 WiFi","🧹 Housekeeping","🏊 Pool"]},
+  {id:10,name:"Gharpayy Electronic City — Phase 1",location:"Electronic City",type:"Triple Sharing",price:6500,meals:"yes",gender:"Boys",rating:4.3,reviews:64,available:10,badge:"",icon:"💡",tags:["Near Infosys","Near Wipro","Best Value in EC"],amenities:["🍽️ Meals","🚌 Shuttle","📶 WiFi","🛡️ Security"]},
+  {id:11,name:"Gharpayy Indiranagar — 100 Feet Road",location:"Indiranagar",type:"Studio",price:25000,meals:"no",gender:"Coed",rating:4.9,reviews:44,available:1,badge:"managed",icon:"🎯",tags:["Premium Location","Metro Station","Nightlife Hub"],amenities:["📦 Fully Furnished","🧺 Laundry","🚗 Parking","📶 Fiber"]},
+  {id:12,name:"Gharpayy Marathalli — Tech Corridor",location:"Marathalli",type:"Double Sharing",price:9000,meals:"yes",gender:"Coed",rating:4.5,reviews:82,available:3,badge:"managed",icon:"🔌",tags:["Embassy TechVillage","ORR Access","Top Rated"],amenities:["🍽️ Meals","📶 WiFi","🧹 Housekeeping","🛡️ Security"]},
+];
+
+let AF={type:"all",meal:"all",gender:"all",budget:25000};
+
+function renderListings(data){
+  const c=document.getElementById('listings-container');
+  const nr=document.getElementById('no-results');
+  document.getElementById('result-count').textContent=data.length;
+  if(!data.length){c.innerHTML='';nr.style.display='block';return;}
+  nr.style.display='none';
+  c.innerHTML=data.map(p=>`
+    <div class="listing-card">
+      <div class="listing-img">
+        ${p.icon}
+        ${p.badge?`<div class="l-badge ${p.badge}">${p.badge==='managed'?'✓ Managed':'🔥 Popular'}</div>`:''}
+      </div>
+      <div class="listing-body">
+        <div class="listing-top">
+          <div class="listing-name">${p.name}</div>
+          <div class="listing-price"><div class="amount">₹${p.price.toLocaleString('en-IN')}</div><div class="per">/month</div></div>
+        </div>
+        <div class="listing-loc">📍 ${p.location} &nbsp;·&nbsp; ${p.type} &nbsp;·&nbsp; ${p.gender}</div>
+        <div class="listing-tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+        <div class="listing-amenities">${p.amenities.map(a=>`<span class="amenity">${a}</span>`).join('')}</div>
+        <div class="listing-footer">
+          <div class="rating"><span class="stars">${'★'.repeat(Math.floor(p.rating))}</span> ${p.rating} <span class="rcount">(${p.reviews})</span></div>
+          <span class="avail">● ${p.available} rooms left</span>
+          <button class="book-btn" onclick="openModal(${p.id},event)">Book Tour</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function applyFilters(){
+  let d=[...PGS];
+  const loc=document.getElementById('search-location').value;
+  const typ=document.getElementById('search-type').value;
+  const bud=document.getElementById('search-budget').value;
+  if(loc) d=d.filter(p=>p.location===loc);
+  if(typ) d=d.filter(p=>p.type===typ);
+  if(bud) d=d.filter(p=>p.price<=parseInt(bud));
+  if(AF.type!=='all') d=d.filter(p=>p.type===AF.type);
+  if(AF.meal!=='all') d=d.filter(p=>p.meals===AF.meal);
+  if(AF.gender!=='all') d=d.filter(p=>p.gender===AF.gender);
+  d=d.filter(p=>p.price<=AF.budget);
+  const s=document.getElementById('sort-select').value;
+  if(s==='price-low') d.sort((a,b)=>a.price-b.price);
+  else if(s==='price-high') d.sort((a,b)=>b.price-a.price);
+  else if(s==='rating') d.sort((a,b)=>b.rating-a.rating);
+  renderListings(d);
+}
+
+function toggleChip(el,group){
+  document.querySelectorAll(`#${group}-chips .chip`).forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  AF[group]=el.dataset[group];
+  applyFilters();
+}
+
+function updateBudget(val){
+  AF.budget=parseInt(val);
+  document.getElementById('budget-label').textContent=parseInt(val).toLocaleString('en-IN');
+  applyFilters();
+}
+
+function resetFilters(){
+  AF={type:"all",meal:"all",gender:"all",budget:25000};
+  document.getElementById('price-slider').value=25000;
+  document.getElementById('budget-label').textContent='25,000';
+  document.getElementById('search-location').value='';
+  document.getElementById('search-type').value='';
+  document.getElementById('search-budget').value='';
+  document.getElementById('sort-select').value='default';
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.chip[data-type="all"],.chip[data-meal="all"],.chip[data-gender="all"]').forEach(c=>c.classList.add('active'));
+  renderListings(PGS);
+}
+
+function filterByArea(area){
+  document.getElementById('search-location').value=area;
+  document.getElementById('listings-section').scrollIntoView({behavior:'smooth'});
+  applyFilters();
+}
+
+function openModal(id,e){
+  if(e) e.stopPropagation();
+  const p=id?PGS.find(x=>x.id===id):null;
+  if(p){
+    document.getElementById('modal-title').textContent='Book a Tour — '+p.location;
+    document.getElementById('modal-subtitle').textContent=p.name;
+    document.getElementById('f-location').value=p.location;
+  } else {
+    document.getElementById('modal-title').textContent='Book a Free Tour';
+    document.getElementById('modal-subtitle').textContent="We'll confirm within 2 hours. No commitment needed.";
+  }
+  document.getElementById('success-msg').style.display='none';
+  document.getElementById('form-submit-btn').disabled=false;
+  document.getElementById('form-submit-btn').textContent="Request Tour — It's Free";
+  document.getElementById('book-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){
+  document.getElementById('book-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function closeModalOutside(e){
+  if(e.target===document.getElementById('book-modal')) closeModal();
+}
+
+function submitForm(){
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const loc=document.getElementById('f-location').value;
+  if(!name||!phone||!loc){alert('Please fill in your name, phone number, and preferred location.');return;}
+  const btn=document.getElementById('form-submit-btn');
+  btn.disabled=true;btn.textContent='Sending...';
+  setTimeout(()=>{
+    document.getElementById('success-msg').style.display='block';
+    btn.textContent='✓ Request Sent';
+    setTimeout(()=>{
+      closeModal();
+      const t=document.getElementById('toast');
+      t.classList.add('show');
+      setTimeout(()=>t.classList.remove('show'),4000);
+      document.getElementById('f-name').value='';
+      document.getElementById('f-phone').value='';
+      document.getElementById('f-note').value='';
+    },2000);
+  },800);
+}
+
+// Init
+renderListings(PGS);
+const dd=new Date();dd.setDate(dd.getDate()+1);
+document.getElementById('f-date').min=dd.toISOString().split('T')[0];
+</script>
+</body>
+</html>
